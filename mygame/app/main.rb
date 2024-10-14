@@ -1,14 +1,14 @@
 # main.rb
 require 'app/player'
 require 'app/animal'
-require 'app/ui'
+require 'app/modal'
 
 def tick(args)
   args.state.player ||= Player.new
-  args.state.ui ||= UI.new(args)
+  args.state.modal ||= Modal.new(args)
 
   args.state.player.update
-  args.state.ui.update(args)
+  args.state.modal.update(args)
 
-  args.state.ui.render(args)
+  args.state.modal.render(args)
 end
