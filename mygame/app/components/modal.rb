@@ -1,23 +1,32 @@
 class Modal
   def initialize(_args)
-    @menu_bg = { x: 40, y: 116, w: 200, h: 260, sprite: 'assets/bg-menu.png' }
-    @toggle_modal_button = { x: 40, y: 40, w: 200, h: 60, sprite: 'assets/btn-menu.png' }
+    @menu_bg = { x: 40, y: 116, w: 380, h: 260, sprite: 'assets/bg-menu.png' }
+    @debug_bg = { x: 40, y: 430, w: 340, h: 250, sprite: 'assets/bg-debug.png' }
+    @animal_options = { x: 900, y: 340, w: 340, h: 340, sprite: 'assets/bg-animal-list.png' }
+
+    @menu = { x: 40, y: 40, w: 200, h: 60, sprite: 'assets/btn-menu.png' }
+
     @pause_button = { x: 60, y: 296, w: 160, h: 60, sprite: 'assets/btn-pause.png' }
-    @purchase_button = { x: 60, y: 216, w: 160, h: 60, sprite: 'assets/btn-buy-animal.png' }
-    @remove_button = { x: 60, y: 136, w: 160, h: 60, sprite: 'assets/btn-sell-animal.png' }
-    @stats_background = { x: 40, y: 427, w: 342, h: 253, sprite: 'assets/bg-animal-list.png' }
+    @buy_animal = { x: 60, y: 216, w: 160, h: 60, sprite: 'assets/btn-buy-animal.png' }
+    @visit_work = { x: 60, y: 136, w: 160, h: 60, sprite: 'assets/btn-work.png' }
+    @sell_product = { x: 240, y: 296, w: 160, h: 60, sprite: 'assets/btn-sell-product.png' }
+    @buy_food = { x: 240, y: 216, w: 160, h: 60, sprite: 'assets/btn-buy-food.png' }
+    @leave_work = { x: 240, y: 136, w: 160, h: 60, sprite: 'assets/btn-leave-work.png' }
+
+    # @sell_animal = { x: 60, y: 136, w: 160, h: 60, sprite: 'assets/btn-sell.png' }
+
     @modal_open = false
   end
 
   def update(args)
     return unless args.inputs.mouse.click
 
-    @modal_open = !@modal_open if click_on_button?(args, @toggle_modal_button)
+    @modal_open = !@modal_open if click_on_button?(args, @menu)
     return unless @modal_open
 
-    if click_on_button?(args, @purchase_button)
+    if click_on_button?(args, @buy_animal)
       args.state.player.add_animal
-    elsif click_on_button?(args, @remove_button)
+    elsif click_on_button?(args, @sell_animal)
       args.state.player.remove_last_animal
     elsif click_on_button?(args, @pause_button)
       args.state.game_time.pause
@@ -26,21 +35,19 @@ class Modal
 
   def render(args)
     player = args.state.player
-    text_color = [251, 251, 251]
-    render_sprite(args, @stats_background)
-    args.outputs.labels << [70, 660, "Money: #{player.money}", text_color]
-    args.outputs.labels << [70, 630, "Game Time: #{args.state.game_time.current_game_time}", text_color]
-    args.outputs.labels << [70, 600, "Total Game Time: #{args.state.game_time.total_time}", text_color]
-    args.outputs.labels << [70, 570, "Animals: #{player.animals.count}", text_color]
-    args.outputs.labels << [70, 540, "Products: #{player.product_output}", text_color]
-    render_sprite(args, @toggle_modal_button)
+    render_sprites(args, [@debug_bg, @animal_options])
+    args.outputs.labels << { x: 70, y: 660, text: "Money: #{player.money}", r: 251, g: 251, b: 251 }
+    args.outputs.labels << { x: 70, y: 630, text: "Game Time: #{args.state.game_time.current_game_time}", r: 251, g: 251, b: 251 }
+    args.outputs.labels << { x: 70, y: 600, text: "Total Game Time: #{args.state.game_time.total_time}", r: 251, g: 251, b: 251 }
+    args.outputs.labels << { x: 70, y: 570, text: "Animals: #{player.animals.count}", r: 251, g: 251, b: 251 }
+    args.outputs.labels << { x: 70, y: 540, text: "Products: #{player.product_output}", r: 251, g: 251, b: 251 }
+    render_sprite(args, @menu)
 
     return unless @modal_open
 
-    render_sprite(args, @menu_bg)
-    render_sprite(args, @purchase_button)
-    render_sprite(args, @pause_button)
-    render_sprite(args, @remove_button)
+    render_sprites(args, [@menu_bg, @buy_animal, @pause_button, @visit_work, @buy_food, @leave_work, @sell_product])
+
+    # render_sprite(args, @sell_animal)
   end
 
   private
@@ -51,5 +58,11 @@ class Modal
 
   def render_sprite(args, sprite)
     args.outputs.sprites << [sprite[:x], sprite[:y], sprite[:w], sprite[:h], sprite[:sprite]]
+  end
+
+  def render_sprites(args, sprites)
+    sprites.map do |sprite|
+      args.outputs.sprites << [sprite[:x], sprite[:y], sprite[:w], sprite[:h], sprite[:sprite]]
+    end
   end
 end
