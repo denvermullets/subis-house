@@ -1,9 +1,9 @@
 # Remove the pound sign and leading space for the properties below before publishing your game.
-# devid=myname
-# devtitle=My Name
-# gameid=mygame
-# gametitle=My Game
-# version=0.1
+devid=subi-house
+devtitle=Subi House
+gameid=subi_house
+gametitle=Subi House
+version=0.1
 # icon=metadata/icon.png
 
 # === Flags available at all licensing tiers ===
@@ -74,7 +74,7 @@
 # NOTE: remove your game's letter box will mean more work for you since you have to
 #       think about what you want to render outside of the games main 1280x720 logical
 #       area.
-# hd_letterbox=true
+hd_letterbox=true
 
 # === Scaling options for All Screen Mode ===
 # You can specify the maximum scale for your game. hd_max_scale's default value is 0 which
