@@ -1,13 +1,11 @@
 # player.rb
 class Player
-  attr_accessor :money, :game_time, :animals, :product_output
+  attr_accessor :money, :animals, :product_output
 
   def initialize
     @money = 0
-    @game_time = 0
     @animals = []
     @product_output = 0
-    @last_update_time = 0
   end
 
   def add_animal
