@@ -19,6 +19,8 @@ class Modal
       args.state.player.add_animal
     elsif click_on_button?(args, @remove_button)
       args.state.player.remove_last_animal
+    elsif click_on_button?(args, @pause_button)
+      args.state.game_time.pause
     end
   end
 
@@ -27,9 +29,10 @@ class Modal
     text_color = [251, 251, 251]
     render_sprite(args, @stats_background)
     args.outputs.labels << [70, 660, "Money: #{player.money}", text_color]
-    args.outputs.labels << [70, 630, "Game Time: #{player.game_time}", text_color]
-    args.outputs.labels << [70, 600, "Animals: #{player.animals.count}", text_color]
-    args.outputs.labels << [70, 570, "Products: #{player.product_output}", text_color]
+    args.outputs.labels << [70, 630, "Game Time: #{args.state.game_time.current_game_time}", text_color]
+    args.outputs.labels << [70, 600, "Total Game Time: #{args.state.game_time.total_time}", text_color]
+    args.outputs.labels << [70, 570, "Animals: #{player.animals.count}", text_color]
+    args.outputs.labels << [70, 540, "Products: #{player.product_output}", text_color]
     render_sprite(args, @toggle_modal_button)
 
     return unless @modal_open

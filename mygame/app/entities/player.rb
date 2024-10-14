@@ -10,17 +10,6 @@ class Player
     @last_update_time = 0
   end
 
-  def update
-    current_time = Time.now.to_f
-    elapsed_time = current_time - @last_update_time.to_f
-    return unless elapsed_time >= 1.0
-
-    @game_time += 1
-    update_animals
-    collect_products
-    @last_update_time = current_time
-  end
-
   def add_animal
     @animals << Animal.new
   end
