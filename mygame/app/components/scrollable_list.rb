@@ -29,6 +29,7 @@ class ScrollableList
 
   def handle_input
     handle_mouse_wheel if mouse_over_scroll_area?
+    handle_click if @args.inputs.mouse.click && mouse_over_scroll_area?
   end
 
   def handle_mouse_wheel
@@ -36,6 +37,27 @@ class ScrollableList
 
     @target_scroll_position -= @args.inputs.mouse.wheel.y * 20
     @target_scroll_position = @target_scroll_position.clamp(0, max_scroll)
+  end
+
+  def handle_click
+    visible_range.each do |index|
+      next unless name_visible?(index) && label_clicked?(index)
+
+      animal = @args.state.player.animals[index]
+      @args.state.animal_modal.open(animal)
+    end
+  end
+
+  def label_clicked?(index)
+    mouse_x = @args.inputs.mouse.x
+    mouse_y = @args.inputs.mouse.y
+    label_x = @scroll_area_x
+    label_y = calculate_y_position(index)
+
+    mouse_x >= label_x &&
+      mouse_x <= (label_x + @scroll_area_width) &&
+      mouse_y >= (label_y - @line_height) &&
+      mouse_y <= label_y
   end
 
   def max_scroll

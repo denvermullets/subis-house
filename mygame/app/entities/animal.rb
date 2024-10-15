@@ -1,11 +1,12 @@
 class Animal
   attr_accessor :hunger, :product_output, :production_rate, :name
 
-  def initialize
-    @name = Time.now.to_s
+  def initialize(args)
+    @name = "Animal #{args.state.player.animals.count + 1}"
     @hunger = 0
     @product_output = 0
     @production_rate = :gold
+    @args = args
   end
 
   def update
@@ -27,6 +28,10 @@ class Animal
 
   def feed
     @hunger = 0
+  end
+
+  def sell(animals)
+    animals.delete(self)
   end
 
   def upgrade_production_rate
