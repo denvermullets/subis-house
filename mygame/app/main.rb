@@ -1,7 +1,7 @@
-# main.rb
 require 'app/entities/player'
 require 'app/entities/animal'
 require 'app/components/modal'
+require 'app/components/scrollable_list'
 require 'app/systems/game_time'
 
 def tick(args)

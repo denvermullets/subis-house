@@ -1,4 +1,3 @@
-# player.rb
 class Player
   attr_accessor :money, :animals, :product_output
 

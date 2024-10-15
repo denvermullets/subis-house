@@ -1,8 +1,8 @@
-# animal.rb
 class Animal
-  attr_accessor :hunger, :product_output, :production_rate
+  attr_accessor :hunger, :product_output, :production_rate, :name
 
   def initialize
+    @name = Time.now.to_s
     @hunger = 0
     @product_output = 0
     @production_rate = :gold
