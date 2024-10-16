@@ -13,8 +13,6 @@ class Modal
     @buy_food = { x: 240, y: 216, w: 160, h: 60, sprite: 'assets/btn-buy-food.png' }
     @leave_work = { x: 240, y: 136, w: 160, h: 60, sprite: 'assets/btn-leave-work.png' }
 
-    # @sell_animal = { x: 60, y: 136, w: 160, h: 60, sprite: 'assets/btn-sell.png' }
-
     @modal_open = false
     @scrollable_list = ScrollableList.new(
       args, [], {
@@ -60,8 +58,8 @@ class Modal
   def determine_click(args)
     if click_on_button?(args, @buy_animal)
       args.state.player.add_animal
-    elsif click_on_button?(args, @sell_animal)
-      args.state.player.remove_last_animal
+    elsif click_on_button?(args, @sell_product)
+      args.state.player.sell_product
     elsif click_on_button?(args, @pause_button)
       args.state.game_time.pause
     end

@@ -21,6 +21,12 @@ class Player
     @animals.each(&:update)
   end
 
+  def sell_product
+    value = @product_output * 8
+    @product_output = 0
+    @money += value
+  end
+
   def collect_products
     @animals.each do |animal|
       @product_output += animal.collect_product
