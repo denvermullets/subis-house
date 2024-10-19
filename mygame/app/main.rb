@@ -1,21 +1,31 @@
-require 'app/entities/player'
-require 'app/entities/animal'
-require 'app/components/modal'
-require 'app/components/animal_modal'
-require 'app/components/scrollable_list'
-require 'app/systems/game_time'
+require 'app/components/sprite_component'
+require 'app/components/z_component'
+require 'app/components/label_component'
+require 'app/components/clickable_component'
+require 'app/components/modal_component'
+require 'app/managers/entity_manager'
+require 'app/systems/render_system'
+require 'app/systems/input_system'
+require 'app/entities/entity'
+require 'app/entities/modal_menu'
+require 'app/entities/button'
 
 def tick(args)
-  args.outputs.labels << [10, 720, "Mouse: #{args.inputs.mouse.x}, #{args.inputs.mouse.y}", 0, 0, 0]
-  args.state.player ||= Player.new(args)
-  args.state.modal ||= Modal.new(args)
-  args.state.animal_modal ||= AnimalModal.new(args)
-  args.state.game_time ||= GameTime.new
+  args.labels << { x: 20, y: 700, text: "#{args.inputs.mouse.x} - #{args.inputs.mouse.y}", r: 0, g: 0, b: 0 }
+  init(args) if args.state.tick_count.zero?
 
-  args.state.game_time.progress_time(args)
-  args.state.modal.update(args)
-  args.state.animal_modal.update(args)
+  args.state.render_system.render_outputs(args)
+  args.state.input_system.update(args)
+end
 
-  args.state.modal.render(args)
-  args.state.animal_modal.render(args)
+def init(args)
+  args.state.entity_manager ||= EntityManager.new
+
+  main_modal = ModalMenu.create_modal
+  main_modal.each do |entity|
+    args.state.entity_manager.add_entity(entity)
+  end
+
+  args.state.render_system = RenderSystem.new(args.state.entity_manager.entities)
+  args.state.input_system = InputSystem.new(args.state.entity_manager.entities, args.inputs)
 end
