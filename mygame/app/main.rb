@@ -1,3 +1,4 @@
+require 'app/components/name_component'
 require 'app/components/sprite_component'
 require 'app/components/z_component'
 require 'app/components/label_component'
@@ -7,6 +8,7 @@ require 'app/managers/entity_manager'
 require 'app/systems/render_system'
 require 'app/systems/input_system'
 require 'app/entities/entity'
+require 'app/entities/animal'
 require 'app/entities/modal_menu'
 require 'app/entities/button'
 
@@ -21,10 +23,10 @@ end
 def init(args)
   args.state.entity_manager ||= EntityManager.new
 
-  main_modal = ModalMenu.new.create_modal
-  main_modal.each do |entity|
-    args.state.entity_manager.add_entity(entity)
-  end
+  main_modal = ModalMenu.new(args).create_modal
+  # main_modal.each do |entity|
+  #   args.state.entity_manager.add_entity(entity)
+  # end
 
   args.state.render_system = RenderSystem.new(args.state.entity_manager.entities)
   args.state.input_system = InputSystem.new(args.state.entity_manager.entities, args.inputs)

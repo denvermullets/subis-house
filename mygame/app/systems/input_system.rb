@@ -6,16 +6,18 @@ class InputSystem
 
   def update(args)
     @entities = args.state.entity_manager.entities
-    @inputs = args.inputs
-    return unless @inputs.mouse.click
+    return unless args.inputs.mouse.click
 
+    sprite_click
+  end
+
+  def sprite_click
     @entities.each do |entity|
       next unless entity.component?(SpriteComponent) && entity.component?(ClickableComponent)
+      next if entity.component?(ModalComponent) && entity.get_component(ModalComponent).visible == false
 
       sprite = entity.get_component(SpriteComponent)
       next unless within_bounds?(@inputs.mouse.x, @inputs.mouse.y, sprite)
-
-      puts 'Entity with Sprite clicked!'
 
       handle_click(entity)
     end

@@ -1,4 +1,8 @@
 class ModalMenu
+  def initialize(args)
+    @args = args
+  end
+
   def create_modal
     # parent element that toggles visiblity
     @parent_modal_component = ModalComponent.new(visible: false)
@@ -9,8 +13,13 @@ class ModalMenu
       @parent_modal_component.toggle
     end
 
-    # return array of entities to render
-    [btn_menu, bg_modal, btn_pause, btn_buy_animal, btn_visit_work, btn_sell_product, btn_buy_food, btn_leave_work]
+    entities = [
+      btn_menu, bg_modal, btn_pause, btn_buy_animal, btn_visit_work, btn_sell_product, btn_buy_food, btn_leave_work
+    ]
+
+    entities.each do |entity|
+      @args.state.entity_manager.add_entity(entity)
+    end
   end
 
   def bg_modal
@@ -34,6 +43,11 @@ class ModalMenu
   def btn_buy_animal
     btn = Button.create_button(path: 'assets/btn-buy-animal.png', x: 60, y: 216, w: 160, h: 60) do
       puts 'button buy animal'
+      @args.state.entity_manager.add_entity(
+        Animal.create(path: 'assets/sprites/subi_1.jpg', x: 180, y: 180, w: 125, h: 125, z: 0) do
+          puts 'hi caminals'
+        end
+      )
       @parent_modal_component.toggle
     end
     btn.add_component(ModalComponent, @parent_modal_component)
