@@ -21,7 +21,7 @@ end
 def init(args)
   args.state.entity_manager ||= EntityManager.new
 
-  main_modal = ModalMenu.create_modal
+  main_modal = ModalMenu.new.create_modal
   main_modal.each do |entity|
     args.state.entity_manager.add_entity(entity)
   end
