@@ -34,6 +34,9 @@ Metrics/MethodLength:
 Metrics/AbcSize:
   Max: 22
 
+Metrics/ParameterLists:
+  Max: 10
+
 # Config files tend to get wordy.
 Layout/LineLength:
   Exclude:
@@ -81,6 +84,7 @@ Naming/MethodParameterName:
   AllowedNames:
     - x
     - y
+    - z
     - w
     - h
     - dx
