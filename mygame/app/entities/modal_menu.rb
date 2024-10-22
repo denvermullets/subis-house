@@ -4,7 +4,6 @@ class ModalMenu
   end
 
   def create_modal
-    # parent element that toggles visiblity
     @parent_modal_component = ModalComponent.new(visible: false)
 
     # main menu button - always visible
@@ -26,12 +25,13 @@ class ModalMenu
     bg_modal = Entity.new(id: :modal_menu)
     bg_modal.add_component(SpriteComponent, SpriteComponent.new(path: 'assets/bg-menu.png', x: 40, y: 116, w: 380, h: 260))
     bg_modal.add_component(ModalComponent, @parent_modal_component)
+    bg_modal.add_component(ZComponent, ZComponent.new(z: 100))
 
     bg_modal
   end
 
   def btn_pause
-    btn = Button.create_button(path: 'assets/btn-pause.png', x: 60, y: 296, w: 160, h: 60) do
+    btn = Button.create_button(path: 'assets/btn-pause.png', x: 60, y: 296, w: 160, h: 60, z: 101) do
       puts 'button pause'
       @parent_modal_component.toggle
     end
@@ -41,7 +41,7 @@ class ModalMenu
   end
 
   def btn_buy_animal
-    btn = Button.create_button(path: 'assets/btn-buy-animal.png', x: 60, y: 216, w: 160, h: 60) do
+    btn = Button.create_button(path: 'assets/btn-buy-animal.png', x: 60, y: 216, w: 160, h: 60, z: 101) do
       puts 'button buy animal'
       @args.state.entity_manager.add_entity(
         Animal.create(path: 'assets/sprites/subi_1.jpg', x: 180, y: 180, w: 125, h: 125, z: 0) do
@@ -56,7 +56,7 @@ class ModalMenu
   end
 
   def btn_visit_work
-    btn = Button.create_button(path: 'assets/btn-work.png', x: 60, y: 136, w: 160, h: 60) do
+    btn = Button.create_button(path: 'assets/btn-work.png', x: 60, y: 136, w: 160, h: 60, z: 101) do
       puts 'visit work'
       @parent_modal_component.toggle
     end
@@ -66,7 +66,7 @@ class ModalMenu
   end
 
   def btn_sell_product
-    btn = Button.create_button(path: 'assets/btn-sell-product.png', x: 240, y: 296, w: 160, h: 60) do
+    btn = Button.create_button(path: 'assets/btn-sell-product.png', x: 240, y: 296, w: 160, h: 60, z: 101) do
       puts 'visit work'
       @parent_modal_component.toggle
     end
@@ -76,7 +76,7 @@ class ModalMenu
   end
 
   def btn_buy_food
-    btn = Button.create_button(path: 'assets/btn-buy-food.png', x: 240, y: 216, w: 160, h: 60) do
+    btn = Button.create_button(path: 'assets/btn-buy-food.png', x: 240, y: 216, w: 160, h: 60, z: 101) do
       puts 'buyfood'
       @parent_modal_component.toggle
     end
@@ -86,7 +86,7 @@ class ModalMenu
   end
 
   def btn_leave_work
-    btn = Button.create_button(path: 'assets/btn-leave-work.png', x: 240, y: 136, w: 160, h: 60) do
+    btn = Button.create_button(path: 'assets/btn-leave-work.png', x: 240, y: 136, w: 160, h: 60, z: 101) do
       puts 'leave work'
       @parent_modal_component.toggle
     end

@@ -15,6 +15,7 @@ class Animal
       )
     )
     animal_entity.add_component(ClickableComponent, ClickableComponent.new(&on_click))
+    animal_entity.add_component(ZComponent, ZComponent.new(z: z))
 
     animal_entity
   end
