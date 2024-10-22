@@ -28,6 +28,8 @@ class RenderSystem
   def render_labels(args)
     sort_labels.each do |entity|
       label = entity.get_component(LabelComponent)
+      next unless label.visible
+
       args.outputs.labels << {
         x: label.x,
         y: label.y,

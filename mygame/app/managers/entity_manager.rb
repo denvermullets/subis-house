@@ -11,6 +11,10 @@ class EntityManager
 
   # maybe we ad a find_by_group_id?
 
+  def find_by_component(component_class)
+    @entities.select { |entity| entity.component?(component_class) }
+  end
+
   def add_entity(entity)
     @entities << entity
   end
