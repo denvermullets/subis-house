@@ -32,7 +32,7 @@ class ModalMenu
 
   def btn_pause
     btn = Button.create_button(path: 'assets/btn-pause.png', x: 60, y: 296, w: 160, h: 60, z: 101) do
-      puts 'button pause'
+      @args.state.time_system.pause
       @parent_modal_component.toggle
     end
     btn.add_component(ModalComponent, @parent_modal_component)

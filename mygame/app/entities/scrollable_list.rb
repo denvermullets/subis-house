@@ -25,7 +25,7 @@ class ScrollableList
   end
 
   def self.create_animals(args)
-    100.times do
+    25.times do
       animal = Animal.create(path: 'assets/sprites/subi_1.jpg', x: 180, y: 180, w: 125, h: 125, z: 0) do
         puts 'hi caminals2'
       end
