@@ -6,7 +6,7 @@ class DebugInfoSystem
   def update(args)
     @args = args
 
-    debug = @args.state.entity_manager.entities.find { |entity| entity.id == :debug_window }
+    debug = @args.state.entity_manager.find_by_id(:debug_window)
 
     debug.get_all_components(LabelComponent).map do |label|
       case label.id
@@ -16,6 +16,7 @@ class DebugInfoSystem
       when :elapsed_game_time
         label.text = "Game Time: #{@args.state.game_time.current_game_time}"
       when :animal_count
+        label.text = "Aminals: #{@args.state.entity_manager.entities.count}"
       end
     end
   end

@@ -1,7 +1,6 @@
 class Debug
   def self.create(args)
     debug_window = Entity.new(id: :debug_window)
-    puts debug_window.id
     debug_window.add_component(
       SpriteComponent,
       SpriteComponent.new(x: 40, y: 430, w: 340, h: 250, path: 'assets/bg-debug.png')
