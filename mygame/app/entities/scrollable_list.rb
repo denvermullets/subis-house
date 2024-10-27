@@ -25,8 +25,11 @@ class ScrollableList
   end
 
   def self.create_animals(args)
-    25.times do
-      animal = Animal.create(path: 'assets/sprites/subi_1.jpg', x: 180, y: 180, w: 125, h: 125, z: 0) do
+    25.times do |index|
+      animal = Animal.create(
+        path: 'assets/sprites/subi_1.jpg', args: args,
+        x: 180 + (index * 20), y: 180, w: 125, h: 125, z: 0
+      ) do
         puts 'hi caminals2'
       end
       args.state.entity_manager.add_entity(animal)

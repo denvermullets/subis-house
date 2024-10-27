@@ -44,7 +44,7 @@ class ModalMenu
     btn = Button.create_button(path: 'assets/btn-buy-animal.png', x: 60, y: 216, w: 160, h: 60, z: 101) do
       puts 'button buy animal'
       @args.state.entity_manager.add_entity(
-        Animal.create(path: 'assets/sprites/subi_1.jpg', x: 180, y: 180, w: 125, h: 125, z: 0) do
+        Animal.create(args: @args, path: 'assets/sprites/subi_1.jpg', x: 180, y: 120, w: 125, h: 125, z: 0) do
           puts 'hi caminals'
         end
       )

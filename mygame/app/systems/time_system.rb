@@ -1,6 +1,4 @@
 class TimeSystem
-  attr_accessor :current_game_time, :elasped_time, :paused, :total_time
-
   def initialize(game_state)
     @game_state = game_state
   end
@@ -15,6 +13,8 @@ class TimeSystem
     return unless @game_state.paused == false
 
     @game_state.current_game_time += 1
+
+    args.state.production.update(args)
     # args.state.player.update_animals
     # args.state.player.collect_products
   end
