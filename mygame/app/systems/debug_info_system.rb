@@ -9,16 +9,11 @@ class DebugInfoSystem
       when :elapsed_game_time
         label.text = "Game Time: #{args.state.game_time.current_game_time}"
       when :animal_count
-        # entities = args.state.entity_manager.find_by_component(AnimalComponent)
         label.text = "Animals: #{args.state.game_state.total_animals}"
-      when :product
-        animals = args.state.entity_manager.find_by_component(PelletComponent)
-        total_pellets = 0
-        animals.each do |animal|
-          total_pellets += animal.get_component(PelletComponent).pellets
-        end
-
-        label.text = "Product: #{total_pellets}"
+      when :pellets
+        label.text = "Pellets: #{args.state.game_state.pellets}"
+      when :money
+        label.text = "Money: #{args.state.game_state.money}"
       end
     end
   end

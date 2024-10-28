@@ -22,6 +22,7 @@ require 'app/systems/input_system'
 require 'app/systems/time_system'
 require 'app/systems/debug_info_system'
 require 'app/systems/pellet_system'
+require 'app/systems/economy_system'
 
 def tick(args)
   args.labels << { x: 20, y: 700, text: "#{args.inputs.mouse.x} - #{args.inputs.mouse.y}", r: 0, g: 0, b: 0 }
@@ -35,11 +36,12 @@ def tick(args)
 end
 
 def init(args)
+  args.state.entity_manager ||= EntityManager.new
   args.state.game_state ||= GameStateComponent.new
+  args.state.economy_system ||= EconomySystem.new
+  args.state.pellet_system ||= PelletSystem.new
   args.state.game_time ||= TimeComponent.new
   args.state.time_system ||= TimeSystem.new(args.state.game_time)
-  args.state.entity_manager ||= EntityManager.new
-  args.state.production ||= PelletSystem.new
 
   ModalMenu.new(args).create_modal
   ScrollableList.create_list(args)

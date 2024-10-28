@@ -67,7 +67,8 @@ class ModalMenu
 
   def btn_sell_product
     btn = Button.create_button(path: 'assets/btn-sell-product.png', x: 240, y: 296, w: 160, h: 60, z: 101) do
-      puts 'visit work'
+      puts 'sold product'
+      @args.state.economy_system.sell_pellets(@args)
       @parent_modal_component.toggle
     end
     btn.add_component(ModalComponent, @parent_modal_component)

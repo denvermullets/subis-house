@@ -1,4 +1,5 @@
 class TimeComponent
+  attr_gtk
   attr_accessor :current_game_time, :elapsed_time, :paused, :total_time, :last_update_time
 
   def initialize

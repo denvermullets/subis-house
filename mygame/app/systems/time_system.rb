@@ -14,7 +14,7 @@ class TimeSystem
 
     @game_state.current_game_time += 1
 
-    args.state.production.update(args)
+    args.state.pellet_system.update(args)
     # args.state.player.update_animals
     # args.state.player.collect_products
   end

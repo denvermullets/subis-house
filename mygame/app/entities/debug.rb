@@ -10,7 +10,7 @@ class Debug
       LabelComponent.new(
         text: "Money: ",
         r: 251, g: 251, b: 251, x: 70, y: 660, size: 1,
-        id: :current_money
+        id: :money
       )
     )
     debug_window.add_component(
@@ -40,9 +40,9 @@ class Debug
     debug_window.add_component(
       LabelComponent,
       LabelComponent.new(
-        text: "Products: #{args.state.player.product_output}",
+        text: "Pellets: #{args.state.player.pellets_output}",
         x: 70, y: 540, r: 251, g: 251, b: 251, size: 1,
-        id: :product
+        id: :pellets
       )
     )
 
