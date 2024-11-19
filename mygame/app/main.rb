@@ -6,6 +6,7 @@ require 'app/entities/modal_menu'
 require 'app/entities/button'
 require 'app/entities/scrollable_list'
 require 'app/components/game_state_component'
+require 'app/components/hunger_component'
 require 'app/components/name_component'
 require 'app/components/sprite_component'
 require 'app/components/z_component'
@@ -17,6 +18,7 @@ require 'app/components/time_component'
 require 'app/components/animal_component'
 require 'app/components/pellet_component'
 require 'app/systems/render_system'
+require 'app/systems/hunger_system'
 require 'app/systems/scrollable_system'
 require 'app/systems/input_system'
 require 'app/systems/time_system'
@@ -27,6 +29,17 @@ require 'app/systems/economy_system'
 def tick(args)
   args.labels << { x: 20, y: 700, text: "#{args.inputs.mouse.x} - #{args.inputs.mouse.y}", r: 0, g: 0, b: 0 }
   init(args) if args.state.tick_count.zero?
+
+  # temp debugging
+  animals = args.state.entity_manager.find_by_component(HungerComponent)
+  if animals&.count&.positive?
+    animals.each_with_index do |animal, index|
+      args.labels << {
+        text: "Hunger: #{animal.get_component(HungerComponent).level}",
+        x: 30, y: 400 - ((index + 1) * 20), r: 0, g: 0, b: 0, size: 1
+      }
+    end
+  end
 
   args.state.input_system.update(args)
   args.state.scrollable_system.update(args)
@@ -40,6 +53,7 @@ def init(args)
   args.state.game_state ||= GameStateComponent.new
   args.state.economy_system ||= EconomySystem.new
   args.state.pellet_system ||= PelletSystem.new
+  args.state.hunger_system ||= HungerSystem.new
   args.state.game_time ||= TimeComponent.new
   args.state.time_system ||= TimeSystem.new(args.state.game_time)
 

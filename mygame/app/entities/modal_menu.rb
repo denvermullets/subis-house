@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# main modal menu for game actions
 class ModalMenu
   def initialize(args)
     @args = args

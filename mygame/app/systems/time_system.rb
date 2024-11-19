@@ -1,9 +1,13 @@
+# frozen_string_literal: true
+
+# System handles progression of time
 class TimeSystem
   def initialize(game_state)
     @game_state = game_state
   end
 
   def progress_time(args)
+
     current_time = Time.now.to_f
     @game_state.elapsed_time = current_time - @game_state.last_update_time.to_f
     return unless @game_state.elapsed_time >= 1.0
@@ -15,6 +19,7 @@ class TimeSystem
     @game_state.current_game_time += 1
 
     args.state.pellet_system.update(args)
+    args.state.hunger_system.update(args)
     # args.state.player.update_animals
     # args.state.player.collect_products
   end

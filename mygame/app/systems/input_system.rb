@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class InputSystem
   def initialize(entities, inputs)
     @entities = entities
@@ -52,14 +54,12 @@ class InputSystem
   end
 
   def calculate_text_width(text, size_enum)
-    # A rough calculation for text width based on character count and size_enum.
-    # This will need to be adjusted based on how your font system renders text.
+    # rough calculation for text width based on character count and size_enum.
     text.length * 10 * (1 + size_enum / 10.0)
   end
 
-  # Placeholder text height calculation
   def calculate_text_height(size_enum)
-    20 * (1 + size_enum / 10.0)  # Modify this based on your font size scaling
+    20 * (1 + size_enum / 10.0)
   end
 
   def handle_click(entity)

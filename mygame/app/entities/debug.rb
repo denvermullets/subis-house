@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# outputs some debug info to keep track during dev
 class Debug
   def self.create(args)
     debug_window = Entity.new(id: :debug_window)
@@ -8,7 +11,7 @@ class Debug
     debug_window.add_component(
       LabelComponent,
       LabelComponent.new(
-        text: "Money: ",
+        text: 'Money: ',
         r: 251, g: 251, b: 251, x: 70, y: 660, size: 1,
         id: :money
       )

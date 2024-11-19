@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 # sets up the ScrollableList component
 # basic idea is that the list will find all ANIMALS and put their LabelComponent in the list
-
 class ScrollableList
   def self.create_list(args)
     scrollable_list_entity = Entity.new(id: :scrollable_list)
@@ -25,14 +26,14 @@ class ScrollableList
   end
 
   def self.create_animals(args)
-    25.times do |index|
-      animal = Animal.create(
-        path: 'assets/sprites/subi_1.jpg', args: args,
-        x: 180 + (index * 20), y: 180, w: 125, h: 125, z: 0
-      ) do
-        puts 'hi caminals2'
-      end
-      args.state.entity_manager.add_entity(animal)
-    end
+    # 10.times do |index|
+    #   animal = Animal.create(
+    #     path: 'assets/sprites/subi_1.jpg', args: args,
+    #     x: 10 + (index * 120), y: 180, w: 125, h: 125, z: 0
+    #   ) do
+    #     puts 'hi caminals2'
+    #   end
+    #   args.state.entity_manager.add_entity(animal)
+    # end
   end
 end

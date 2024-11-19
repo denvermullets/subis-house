@@ -18,6 +18,7 @@ class Animal
     animal_entity.add_component(ZComponent, ZComponent.new(z: z))
     animal_entity.add_component(AnimalComponent, AnimalComponent.new)
     animal_entity.add_component(PelletComponent, PelletComponent.new)
+    animal_entity.add_component(HungerComponent, HungerComponent.new)
 
     args.state.game_state.total_animals += 1
     animal_entity
