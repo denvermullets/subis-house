@@ -46,11 +46,7 @@ class ModalMenu
   def btn_buy_animal
     btn = Button.create_button(path: 'assets/btn-buy-animal.png', x: 60, y: 216, w: 160, h: 60, z: 101) do
       puts 'button buy animal'
-      @args.state.entity_manager.add_entity(
-        Animal.create(args: @args, path: 'assets/sprites/subi_1.jpg', x: 180, y: 120, w: 125, h: 125, z: 0) do
-          puts 'hi caminals'
-        end
-      )
+      AnimalFactory.create_animal(@args)
       @parent_modal_component.toggle
     end
     btn.add_component(ModalComponent, @parent_modal_component)

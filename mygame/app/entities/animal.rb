@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
+# core Subi class
 class Animal
-  def self.create(args:, path:, x:, y:, w:, h:, z: 0, &on_click)
-    animal_name = NameComponent.new(name: "Random Name #{Random.rand(1000)}")
+  def self.create(args:, path:, x:, y:, w:, h:, z: 0, name:, &on_click)
+    animal_name = NameComponent.new(name: name)
     animal_entity = Entity.new(id: animal_name.name)
     animal_entity.add_component(SpriteComponent, SpriteComponent.new(path: path, x: x, y: y, w: w, h: h))
     animal_entity.add_component(NameComponent, animal_name)
