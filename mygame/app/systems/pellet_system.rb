@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# on each predefined time advancement, each subi will generate their own pellets
+# each subi generates pellets according to their own stats
 # based on quality, other modifiers will go here as well
 class PelletSystem
   def update(args)
