@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 # System handles progression of time
-# keeps track of
+# keeps track of each total game time and triggers updates every second
+# currently not storing milliseconds
 class TimeSystem
   def initialize(game_state)
     @game_state = game_state
