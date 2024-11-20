@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 # System handles progression of time
+# keeps track of
 class TimeSystem
   def initialize(game_state)
     @game_state = game_state
@@ -21,6 +22,10 @@ class TimeSystem
 
   private
 
+  def pause
+    @game_state.paused = !@game_state.paused
+  end
+
   def set_clock
     @current_time = Time.now.to_f
     @game_state.elapsed_time = @current_time - @game_state.last_update_time.to_f
@@ -37,9 +42,5 @@ class TimeSystem
     args.state.hunger_system.update(args)
     # args.state.player.update_animals
     # args.state.player.collect_products
-  end
-
-  def pause
-    @game_state.paused = !@game_state.paused
   end
 end
