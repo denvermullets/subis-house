@@ -37,7 +37,7 @@ def tick(args)
     animals.each_with_index do |animal, index|
       args.labels << {
         text: "Hunger: #{animal.get_component(HungerComponent).level}",
-        x: 30, y: 400 - ((index + 1) * 20), r: 0, g: 0, b: 0, size: 1
+        x: 405, y: 675 - ((index + 1) * 20), r: 0, g: 0, b: 0, size: 1
       }
     end
   end

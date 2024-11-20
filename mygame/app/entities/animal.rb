@@ -2,6 +2,9 @@
 
 # core Subi class
 class Animal
+  # rubocop:disable Metrics/ParameterLists
+  # rubocop:disable Metrics/MethodLength
+  # rubocop:disable Metrics/AbcSize
   def self.create(args:, path:, x:, y:, w:, h:, z: 0, name:, &on_click)
     animal_name = NameComponent.new(name: name)
     animal_entity = Entity.new(id: animal_name.name)
@@ -26,4 +29,7 @@ class Animal
     args.state.game_state.total_animals += 1
     animal_entity
   end
+  # rubocop:enable Metrics/ParameterLists
+  # rubocop:enable Metrics/MethodLength
+  # rubocop:enable Metrics/AbcSize
 end
