@@ -5,13 +5,16 @@
 class PelletSystem
   def update(args)
     animals = load_animals(args)
+    animals.each do |entity|
+      pellet_comp = entity.get_component(PelletComponent)
+      animal_entity = entity.get_component(AnimalComponent)
 
-    animals.each do |animal|
-      pellet_comp = animal.get_component(PelletComponent)
-      quality = animal.get_component(AnimalComponent).quality
+      pellet_comp.last_generated += 1
+      next unless pellet_comp.last_generated >= pellet_comp.production_rate
 
-      pellet_comp.pellets += generate_pellets(quality)
-      args.state.game_state.pellets += generate_pellets(quality)
+      pellet_comp.pellets += generate_pellets(animal_entity.quality)
+      args.state.game_state.pellets += generate_pellets(animal_entity.quality)
+      pellet_comp.last_generated = 0
     end
   end
 

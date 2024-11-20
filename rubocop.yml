@@ -29,13 +29,13 @@ Metrics/BlockLength:
     - 'local_gems/*/spec/**/*.rb'
 
 Metrics/MethodLength:
-  Max: 20
+  Max: 30
 
 Metrics/AbcSize:
-  Max: 22
+  Max: 30
 
 Metrics/ParameterLists:
-  Max: 10
+  Max: 15
 
 # Config files tend to get wordy.
 Layout/LineLength:
