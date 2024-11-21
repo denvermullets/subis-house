@@ -2,7 +2,7 @@ class DebugInfoSystem
   def update(args)
     debug = args.state.entity_manager.find_by_id(:debug_window)
 
-    debug.get_all_components(LabelComponent).map do |label|
+    debug.where(LabelComponent).map do |label|
       case label.id
       when :total_time
         label.text = "Total Game Time: #{args.state.game_time.total_time}"
