@@ -1,3 +1,6 @@
+# frozen_state_literal: true
+
+# this is what updates the debug menu labels
 class DebugInfoSystem
   def update(args)
     debug = args.state.entity_manager.find_by_id(:debug_window)
@@ -14,6 +17,8 @@ class DebugInfoSystem
         label.text = "Pellets: #{args.state.game_state.pellets}"
       when :money
         label.text = "Money: #{args.state.game_state.money}"
+      when :food
+        label.text = "Food: #{args.state.game_state.food}"
       end
     end
   end

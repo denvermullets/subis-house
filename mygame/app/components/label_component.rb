@@ -20,4 +20,12 @@ class LabelComponent
   def toggle
     @visible = !@visible
   end
+
+  def show
+    @visible = true
+  end
+
+  def hide
+    @visible = false
+  end
 end

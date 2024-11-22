@@ -35,7 +35,7 @@ class PelletSystem
   end
 
   def generate_pellets(quality)
-    types = { gold: 1.5, silver: 1, bronze: 0.5 }
+    types = { gold: 8, silver: 4, bronze: 2 }
     types[quality]
   end
 end

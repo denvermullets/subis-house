@@ -19,7 +19,7 @@ class Debug
     debug_window.add_component(
       LabelComponent,
       LabelComponent.new(
-        text: "Game Time: #{args.state.game_time.current_game_time}",
+        text: 'Game Time: ',
         x: 70, y: 630, r: 251, g: 251, b: 251, size: 1,
         id: :elapsed_game_time
       )
@@ -27,7 +27,7 @@ class Debug
     debug_window.add_component(
       LabelComponent,
       LabelComponent.new(
-        text: "Total Game Time: #{args.state.game_time.total_time}",
+        text: 'Total Game Time: ',
         r: 251, g: 251, b: 251, x: 70, y: 600, size: 1,
         id: :total_time
       )
@@ -35,7 +35,7 @@ class Debug
     debug_window.add_component(
       LabelComponent,
       LabelComponent.new(
-        text: "Animals: #{args.state.player.animals.count}",
+        text: 'Animals: ',
         r: 251, g: 251, b: 251, x: 70, y: 570, size: 1,
         id: :animal_count
       )
@@ -43,9 +43,17 @@ class Debug
     debug_window.add_component(
       LabelComponent,
       LabelComponent.new(
-        text: "Pellets: #{args.state.player.pellets_output}",
+        text: 'Pellets: ',
         x: 70, y: 540, r: 251, g: 251, b: 251, size: 1,
         id: :pellets
+      )
+    )
+    debug_window.add_component(
+      LabelComponent,
+      LabelComponent.new(
+        text: 'Food: ',
+        x: 70, y: 510, r: 251, g: 251, b: 251, size: 1,
+        id: :food
       )
     )
 
