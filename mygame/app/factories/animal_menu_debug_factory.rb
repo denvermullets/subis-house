@@ -55,6 +55,17 @@ module AnimalMenuDebugFactory
         id: :pellets
       )
     )
+    animal_menu.add_component(
+      LabelComponent,
+      LabelComponent.new(
+        text: "Quality: #{animal.get_component(AnimalComponent).quality}",
+        x: 885,
+        y: 160,
+        size: 1,
+        visible: false,
+        id: :quality
+      )
+    )
 
     args.state.entity_manager.add_entity(animal)
     args.state.entity_manager.add_entity(animal_menu)
