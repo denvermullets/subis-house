@@ -21,7 +21,8 @@ class Entity
     @components[type].first
   end
 
-  def get_all_components(type)
+  # get_all_components by type in entity
+  def where(type)
     @components[type]
   end
 

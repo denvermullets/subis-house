@@ -2,10 +2,12 @@ require 'app/managers/entity_manager'
 require 'app/entities/entity'
 require 'app/entities/debug'
 require 'app/entities/animal'
+require 'app/entities/animal_menu_debug'
 require 'app/entities/modal_menu'
 require 'app/entities/button'
 require 'app/entities/scrollable_list'
-require 'app/factories/animal_factory'
+require 'app/factories/animal_menu_debug_factory'
+require 'app/components/animal_menu_component'
 require 'app/components/game_state_component'
 require 'app/components/hunger_component'
 require 'app/components/name_component'
@@ -25,6 +27,7 @@ require 'app/systems/input_system'
 require 'app/systems/time_system'
 require 'app/systems/debug_info_system'
 require 'app/systems/pellet_system'
+require 'app/systems/animal_menu_system'
 require 'app/systems/economy_system'
 
 def tick(args)
@@ -46,6 +49,7 @@ def tick(args)
   args.state.scrollable_system.update(args)
   args.state.time_system.progress_time(args)
   args.state.debug_info.update(args)
+  args.state.animal_menu_system.update(args)
   args.state.render_system.render_outputs(args)
 end
 
@@ -56,6 +60,7 @@ def init(args)
   args.state.pellet_system ||= PelletSystem.new
   args.state.hunger_system ||= HungerSystem.new
   args.state.game_time ||= TimeComponent.new
+  args.state.animal_menu_system ||= AnimalMenuSystem.new
   args.state.time_system ||= TimeSystem.new(args.state.game_time)
 
   ModalMenu.new(args).create_modal

@@ -28,7 +28,7 @@ class RenderSystem
 
   def render_labels(args)
     sort_labels.each do |entity|
-      label = entity.get_all_components(LabelComponent)
+      label = entity.where(LabelComponent)
       label.each do |single_label|
         next unless single_label.visible
 

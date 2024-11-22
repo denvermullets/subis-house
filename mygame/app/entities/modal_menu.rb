@@ -46,7 +46,7 @@ class ModalMenu
   def btn_buy_animal
     btn = Button.create_button(path: 'assets/btn-buy-animal.png', x: 60, y: 216, w: 160, h: 60, z: 101) do
       puts 'button buy animal'
-      AnimalFactory.create_animal(@args)
+      AnimalMenuDebugFactory.create_animal(@args)
       @parent_modal_component.toggle
     end
     btn.add_component(ModalComponent, @parent_modal_component)

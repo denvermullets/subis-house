@@ -22,7 +22,6 @@ class ScrollableList
     )
     scrollable_list_entity.add_component(ScrollableComponent, scrollable_component)
     args.state.entity_manager.add_entity(scrollable_list_entity)
-    create_animals(args)
   end
 
   def self.create_animals(args)

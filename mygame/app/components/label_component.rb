@@ -16,4 +16,8 @@ class LabelComponent
     @size_enum = @size
     @id = id
   end
+
+  def toggle
+    @visible = !@visible
+  end
 end
