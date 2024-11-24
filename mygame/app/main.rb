@@ -29,6 +29,7 @@ require 'app/systems/debug_info_system'
 require 'app/systems/pellet_system'
 require 'app/systems/animal_menu_system'
 require 'app/systems/economy_system'
+require 'app/systems/feeding_system'
 
 def tick(args)
   args.labels << { x: 20, y: 700, text: "#{args.inputs.mouse.x} - #{args.inputs.mouse.y}", r: 0, g: 0, b: 0 }
@@ -48,6 +49,7 @@ def init(args)
   args.state.economy_system ||= EconomySystem.new
   args.state.pellet_system ||= PelletSystem.new
   args.state.hunger_system ||= HungerSystem.new
+  args.state.feeding_system ||= FeedingSystem.new
   args.state.game_time ||= TimeComponent.new
   args.state.animal_menu_system ||= AnimalMenuSystem.new
   args.state.time_system ||= TimeSystem.new(args.state.game_time)

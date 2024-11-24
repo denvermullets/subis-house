@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# handles basic inputs and click events - no controller support yet
 class InputSystem
   def initialize(entities, inputs)
     @entities = entities
@@ -8,10 +9,36 @@ class InputSystem
 
   def update(args)
     @entities = args.state.entity_manager.entities
+    @modals = active_modals
     return unless args.inputs.mouse.click
 
-    sprite_click
-    label_click
+    if @modals.any?
+      modal_clicks(@modals)
+    else
+      sprite_click
+      label_click
+    end
+  end
+
+  def active_modals
+    # filter modals that are active
+    @entities.select do |entity|
+      entity.component?(ModalComponent) && entity.get_component(ModalComponent).visible &&
+        entity.component?(ClickableComponent)
+    end
+  end
+
+  def modal_clicks(entities)
+    # only allow action on sprites or labels that are within an active_modal
+    entities.each do |entity|
+      if entity.component?(SpriteComponent)
+        sprite = entity.get_component(SpriteComponent)
+        handle_click(entity) if within_sprite_bounds?(@inputs.mouse.x, @inputs.mouse.y, sprite)
+      elsif entity.component?(LabelComponent)
+        label = entity.get_component(LabelComponent)
+        handle_click(entity) if within_label_bounds?(@inputs.mouse.x, @inputs.mouse.y, label)
+      end
+    end
   end
 
   def sprite_click
@@ -63,6 +90,7 @@ class InputSystem
   end
 
   def handle_click(entity)
+    # trigger the proc/lambda
     clickable = entity.get_component(ClickableComponent)
     clickable.on_click.call(entity)
   end

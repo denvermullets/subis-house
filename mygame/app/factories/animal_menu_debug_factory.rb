@@ -73,7 +73,7 @@ module AnimalMenuDebugFactory
 
   def self.create_animal_menu(args, modal)
     AnimalMenuDebug.create(args: args, modal: modal) do |menu|
-      toggle_proc(menu, modal, args).call
+      # toggle_proc(menu, modal, args).call
     end
   end
 
@@ -91,7 +91,7 @@ module AnimalMenuDebugFactory
   def self.toggle_proc(animal_menu, modal, args)
     lambda do
       # get current state before closing all modals / labels, then toggle
-      modal_state = modal.visible
+      modal_visible = modal.visible
       entities = args.state.entity_manager.find_by_component(AnimalMenuComponent)
 
       entities.each do |entity|
@@ -99,7 +99,7 @@ module AnimalMenuDebugFactory
         entity.where(LabelComponent).each(&:hide)
       end
 
-      if modal_state == true
+      if modal_visible == true
         modal.close
         animal_menu.where(LabelComponent).each(&:hide)
       else
