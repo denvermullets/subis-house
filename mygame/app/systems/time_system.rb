@@ -40,6 +40,7 @@ class TimeSystem
   def update_systems(args)
     # systems could +1 on each update and maintain their own state
     args.state.pellet_system.update(args)
+    args.state.feeding_system.update(args)
     args.state.hunger_system.update(args)
     # args.state.player.update_animals
     # args.state.player.collect_products
