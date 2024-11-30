@@ -55,7 +55,7 @@ def init(args)
   args.state.time_system ||= TimeSystem.new(args.state.game_time)
 
   ModalMenu.new.create_modal(args)
-  ScrollableList.create_list(args)
+  # ScrollableList.create_list(args)
   Debug.create(args)
 
   args.state.input_system = InputSystem.new(args.state.entity_manager.entities, args.inputs)
