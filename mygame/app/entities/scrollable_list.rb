@@ -23,16 +23,4 @@ class ScrollableList
     scrollable_list_entity.add_component(ScrollableComponent, scrollable_component)
     args.state.entity_manager.add_entity(scrollable_list_entity)
   end
-
-  def self.create_animals(args)
-    # 10.times do |index|
-    #   animal = Animal.create(
-    #     path: 'assets/sprites/subi_1.jpg', args: args,
-    #     x: 10 + (index * 120), y: 180, w: 125, h: 125, z: 0
-    #   ) do
-    #     puts 'hi caminals2'
-    #   end
-    #   args.state.entity_manager.add_entity(animal)
-    # end
-  end
 end

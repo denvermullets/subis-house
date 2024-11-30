@@ -12,8 +12,8 @@ class InputSystem
     @modals = active_modals
     return unless args.inputs.mouse.click
 
-    if @modals.any?
-      modal_clicks(@modals)
+    if modal_menu_active?
+      modal_menu_clicks
     else
       sprite_click
       label_click
@@ -23,14 +23,22 @@ class InputSystem
   def active_modals
     # filter modals that are active
     @entities.select do |entity|
-      entity.component?(ModalComponent) && entity.get_component(ModalComponent).visible &&
-        entity.component?(ClickableComponent)
+      entity.component?(ModalComponent) && entity.get_component(ModalComponent).visible
     end
   end
 
-  def modal_clicks(entities)
-    # only allow action on sprites or labels that are within an active_modal
-    entities.each do |entity|
+  def modal_menu_active?
+    @modals.any? { |modal| modal.get_component(ModalComponent).id == :modal_menu }
+  end
+
+  def modal_menu_clicks
+    # Restrict clicks to only buttons inside the :modal_menu
+    modal_menu_entities = @entities.select do |entity|
+      entity.component?(ModalComponent) &&
+        entity.get_component(ModalComponent).id == :modal_menu
+    end
+
+    modal_menu_entities.each do |entity|
       if entity.component?(SpriteComponent)
         sprite = entity.get_component(SpriteComponent)
         handle_click(entity) if within_sprite_bounds?(@inputs.mouse.x, @inputs.mouse.y, sprite)
