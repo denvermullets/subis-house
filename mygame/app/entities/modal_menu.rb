@@ -47,7 +47,13 @@ class ModalMenu
   def btn_buy_animal(args)
     btn = Button.create_button(path: 'assets/btn-buy-animal.png', x: 60, y: 216, w: 160, h: 60, z: 101) do
       puts 'button buy animal'
-      AnimalMenuDebugFactory.create_animal(args)
+      # check if player has money and charge them for buying animal
+      if args.state.entity_manager.find_by_component(AnimalComponent).count.zero?
+        AnimalMenuDebugFactory.create_animal(args)
+      elsif args.state.game_state.money >= 500
+        args.state.game_state.money -= 500
+        AnimalMenuDebugFactory.create_animal(args)
+      end
       @parent_modal_component.toggle
     end
     btn.add_component(ModalComponent, @parent_modal_component)
