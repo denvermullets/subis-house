@@ -10,6 +10,13 @@ class TimeSystem
 
   def progress_time(args)
     set_clock
+
+    increment_systems(args)
+  end
+
+  private
+
+  def increment_systems(args)
     # once time hits 1 second update internal time
     return unless @game_state.elapsed_time >= 1.0
 
@@ -18,10 +25,16 @@ class TimeSystem
     return unless @game_state.paused == false
 
     @game_state.current_game_time += 1
+    increment_hour
     update_systems(args)
   end
 
-  private
+  def increment_hour
+    elapsed_time = @game_state.current_game_time % 100
+    return unless elapsed_time.zero?
+
+    @game_state.hour += 1
+  end
 
   def pause
     @game_state.paused = !@game_state.paused

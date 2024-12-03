@@ -56,6 +56,14 @@ class Debug
         id: :food
       )
     )
+    debug_window.add_component(
+      LabelComponent,
+      LabelComponent.new(
+        text: 'Hour: ',
+        x: 70, y: 480, r: 251, g: 251, b: 251, size: 1,
+        id: :hour
+      )
+    )
 
     args.state.entity_manager.add_entity(debug_window)
   end
