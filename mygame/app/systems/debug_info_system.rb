@@ -19,6 +19,8 @@ class DebugInfoSystem
         label.text = "Money: #{args.state.game_state.money}"
       when :food
         label.text = "Food: #{args.state.game_state.food}"
+      when :hour
+        label.text = "Hour: #{args.state.game_time.hour}"
       end
     end
   end
